@@ -4,7 +4,13 @@ from utils import get_values_from_dict
 
 
 def perform_quantum_walk(
-    number_qubits, n_steps, repetitions, coin_set=True, symmetric=False, verbose=False
+    number_qubits,
+    n_steps,
+    repetitions,
+    coin_set=True,
+    symmetric=False,
+    verbose=False,
+    percentage=True,
 ):
 
     qubits = cirq.GridQubit.rect(1, number_qubits)
@@ -27,6 +33,8 @@ def perform_quantum_walk(
 
     final = run_simulation(circuit, repetitions)
     x_array, y_array = get_values_from_dict(final)
+    if percentage:
+        y_array = np.asarray(y_array) / sum(y_array)
     return x_array, y_array
 
 
@@ -87,7 +95,9 @@ def one_random_step(pr, n_steps, position):
     return position
 
 
-def perform_random_walk(repetitions, n_steps, pr=0.5, initial_position=0):
+def perform_random_walk(
+    repetitions, n_steps, pr=0.5, initial_position=0, percentage=True
+):
     # positions = np.arange(-1 * n_steps, n_steps + 1, 1)
     positions = range(-1 * n_steps, n_steps + 1)
     instances = [0 for i in range(-1 * n_steps, n_steps + 1)]
@@ -96,4 +106,6 @@ def perform_random_walk(repetitions, n_steps, pr=0.5, initial_position=0):
 
         result = one_random_step(pr, n_steps, initial_position)
         instances[positions.index(result)] += 1
+    if percentage:
+        instances = np.asarray(instances) / sum(instances)
     return list(positions), instances

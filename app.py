@@ -3,15 +3,6 @@ from dash import Dash, Input, Output, dcc, html
 
 from walk import perform_quantum_walk, perform_random_walk
 
-# data = (
-#     pd.read_csv("avocado.csv")
-#     .assign(Date=lambda data: pd.to_datetime(data["Date"], format="%Y-%m-%d"))
-#     .sort_values(by="Date")
-# )
-#
-# regions = data["region"].sort_values().unique()
-# avocado_types = data["type"].sort_values().unique()
-#
 external_stylesheets = [
     {
         "href": (
@@ -173,12 +164,12 @@ def update_charts(n_qubits, n_steps, repetitions, walk_type, coin):
         ],
         "layout": {
             "title": {
-                "text": "Result for " + walk_type,
+                "text": "Result for a " + walk_type + " Walk",
                 "x": 0.05,
                 "xanchor": "left",
             },
             "xaxis": {"fixedrange": True, "title": "Step"},
-            "yaxis": {"fixedrange": True, "title": "Amount"},
+            "yaxis": {"fixedrange": True, "title": "Probability"},
             "colorway": ["#17B897"],
         },
     }
