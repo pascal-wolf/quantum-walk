@@ -29,7 +29,7 @@ app.layout = html.Div(
             children=[
                 html.H3(children="Quantum Walk", className="header-title"),
                 html.P(
-                    children=("Different behaviour between Quantum and Random Walk"),
+                    children=("Simulation of a Discret Quantum walk"),
                     className="header-description",
                 ),
             ],
