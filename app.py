@@ -1,7 +1,7 @@
 import pandas as pd
 from dash import Dash, Input, Output, dcc, html
 
-from walk import perform_quantum_walk
+from walk import perform_quantum_walk, perform_random_walk
 
 # data = (
 #     pd.read_csv("avocado.csv")
@@ -91,6 +91,19 @@ app.layout = html.Div(
                         ),
                     ]
                 ),
+                html.Div(
+                    children=[
+                        html.Div(children="Coin", className="menu-title"),
+                        dcc.Dropdown(
+                            ["0", "1", "Symmetric"],
+                            "1",
+                            id="coin-filter",
+                            clearable=False,
+                            searchable=False,
+                            className="dropdown",
+                        ),
+                    ]
+                ),
             ],
             className="menu",
         ),
@@ -116,11 +129,33 @@ app.layout = html.Div(
     Input("n_steps-filter", "value"),
     Input("repetitions-filter", "value"),
     Input("type-filter", "value"),
+    Input("coin-filter", "value"),
 )
-def update_charts(n_qubits, n_steps, repetitions, walk_type):
-    x_array, y_array = perform_quantum_walk(
-        int(n_qubits), int(n_steps), int(repetitions), verbose=False
-    )
+def update_charts(n_qubits, n_steps, repetitions, walk_type, coin):
+    if walk_type.lower() == "quantum":
+        symmetric = False
+        if coin == "0":
+            coin_set = False
+        else:
+            coin_set = True
+
+            if coin.lower() == "symmetric":
+                symmetric = True
+        x_array, y_array = perform_quantum_walk(
+            int(n_qubits),
+            int(n_steps),
+            int(repetitions),
+            coin_set=coin_set,
+            symmetric=symmetric,
+            verbose=False,
+        )
+    elif walk_type.lower() == "random":
+        x_array, y_array = perform_random_walk(repetitions, n_steps)
+    else:
+        x_array, y_array = [], []
+        walk_type = ""
+        print("No walk type selected. Setting arrays to zero!")
+
     price_chart_figure = {
         "data": [
             {
@@ -132,7 +167,7 @@ def update_charts(n_qubits, n_steps, repetitions, walk_type):
         ],
         "layout": {
             "title": {
-                "text": "Result",
+                "text": "Result for " + walk_type,
                 "x": 0.05,
                 "xanchor": "left",
             },
