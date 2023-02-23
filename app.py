@@ -50,7 +50,6 @@ app.layout = html.Div(
                         ),
                     ]
                 ),
-
                 html.Div(
                     children=[
                         html.Div(children="Coin", className="menu-title"),
@@ -67,7 +66,6 @@ app.layout = html.Div(
             ],
             className="menu",
         ),
-
         html.Div(
             children=[
                 html.Div(

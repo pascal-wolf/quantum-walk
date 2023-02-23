@@ -1,6 +1,6 @@
 import cirq
 import numpy as np
-import matplotlib.pyplot as plt
+from utils import get_values_from_dict
 
 
 def perform_quantum_walk(
@@ -10,11 +10,15 @@ def perform_quantum_walk(
     qubits = cirq.GridQubit.rect(1, number_qubits)
     circuit = cirq.Circuit()
 
-    circuit.append(cirq.X(qubits[1]))
+    # circuit.append(cirq.X(qubits[1]))
     if coin_set:
         circuit.append(cirq.X(qubits[-1]))
+    if symmetric:
+        circuit.append(cirq.H(qubits[-1]))
+        circuit.append(cirq.S(qubits[-1]))
+
     for _ in range(n_steps):
-        circuit = one_quantum_step(circuit, qubits, symmetric)
+        circuit = one_quantum_step(circuit, qubits)
 
     circuit.append(cirq.measure(*qubits[: number_qubits - 1], key="x"))
 
@@ -33,14 +37,12 @@ def run_simulation(circuit, repetitions):
     return dict(final)
 
 
-def one_quantum_step(circuit, qubits, symmetric):
+def one_quantum_step(circuit, qubits):
 
     number_qubits = len(qubits)
     qubits = cirq.GridQubit.rect(1, number_qubits)
     # Hadarmard Operator
     circuit.append(cirq.H(qubits[-1]))
-    if symmetric:
-        circuit.append(cirq.S(qubits[-1]))
 
     # Left Shift Operator
     for i in range(number_qubits - 1, 0, -1):
@@ -95,21 +97,3 @@ def perform_random_walk(repetitions, n_steps, pr=0.5, initial_position=0):
         result = one_random_step(pr, n_steps, initial_position)
         instances[positions.index(result)] += 1
     return list(positions), instances
-
-
-def get_values_from_dict(final):
-
-    x_arr = list(final.keys())
-    y_arr = [dict(final)[j] for j in dict(final).keys()]
-
-    x_arr_final = []
-    y_arr_final = []
-
-    while len(x_arr) > 0:
-
-        x_arr_final.append(min(x_arr))
-        y_arr_final.append(y_arr[x_arr.index(min(x_arr))])
-        holder = x_arr.index(min(x_arr))
-        del x_arr[holder]
-        del y_arr[holder]
-    return x_arr_final, y_arr_final
