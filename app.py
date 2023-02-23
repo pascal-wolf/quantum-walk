@@ -21,7 +21,7 @@ external_stylesheets = [
     },
 ]
 app = Dash(__name__, external_stylesheets=external_stylesheets)
-app.title = "Quantum and Random Walk"
+app.title = "Discret Quantum Walk"
 
 app.layout = html.Div(
     children=[
