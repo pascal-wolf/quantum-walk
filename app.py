@@ -3,15 +3,15 @@ from dash import Dash, Input, Output, dcc, html
 
 from walk import perform_quantum_walk
 
-data = (
-    pd.read_csv("avocado.csv")
-    .assign(Date=lambda data: pd.to_datetime(data["Date"], format="%Y-%m-%d"))
-    .sort_values(by="Date")
-)
-
-regions = data["region"].sort_values().unique()
-avocado_types = data["type"].sort_values().unique()
-
+# data = (
+#     pd.read_csv("avocado.csv")
+#     .assign(Date=lambda data: pd.to_datetime(data["Date"], format="%Y-%m-%d"))
+#     .sort_values(by="Date")
+# )
+#
+# regions = data["region"].sort_values().unique()
+# avocado_types = data["type"].sort_values().unique()
+#
 external_stylesheets = [
     {
         "href": (
