@@ -29,7 +29,7 @@ app.layout = html.Div(
             children=[
                 html.H3(children="Quantum Walk", className="header-title"),
                 html.P(
-                    children=("Unterschied zwischen Quantum und Random Walk"),
+                    children=("Different behaviour between Quantum and Random Walk"),
                     className="header-description",
                 ),
             ],
@@ -50,47 +50,7 @@ app.layout = html.Div(
                         ),
                     ]
                 ),
-                html.Div(
-                    children=[
-                        html.Div(children="Number of Qubits", className="menu-title"),
-                        dcc.Slider(
-                            3,
-                            10,
-                            1,
-                            value=7,
-                            id="n_qubits-filter",
-                            marks=None,
-                            tooltip={"placement": "bottom", "always_visible": True},
-                        ),
-                    ]
-                ),
-                html.Div(
-                    children=[
-                        html.Div(children="Number of Steps", className="menu-title"),
-                        dcc.Slider(
-                            1,
-                            100,
-                            1,
-                            value=30,
-                            id="n_steps-filter",
-                            marks=None,
-                            tooltip={"placement": "bottom", "always_visible": True},
-                        ),
-                    ]
-                ),
-                html.Div(
-                    children=[
-                        html.Div(children="Repetition", className="menu-title"),
-                        dcc.Input(
-                            5000,
-                            id="repetitions-filter",
-                            type="number",
-                            min=1,
-                            max=10000,
-                            step=1,
-                        ),
-                    ]
-                ),
+
                 html.Div(
                     children=[
                         html.Div(children="Coin", className="menu-title"),
@@ -106,6 +66,54 @@ app.layout = html.Div(
                 ),
             ],
             className="menu",
+        ),
+
+        html.Div(
+            children=[
+                html.Div(
+                    children=[
+                        html.Div(children="Number of Qubits", className="menu-title-b"),
+                        dcc.Slider(
+                            3,
+                            10,
+                            1,
+                            value=7,
+                            id="n_qubits-filter",
+                            marks=None,
+                            tooltip={"placement": "bottom", "always_visible": True},
+                        ),
+                    ]
+                ),
+                html.Div(
+                    children=[
+                        html.Div(children="Number of Steps", className="menu-title-b"),
+                        dcc.Slider(
+                            1,
+                            100,
+                            1,
+                            value=30,
+                            id="n_steps-filter",
+                            marks=None,
+                            tooltip={"placement": "bottom", "always_visible": True},
+                        ),
+                    ]
+                ),
+                html.Div(
+                    children=[
+                        html.Div(children="Repetition", className="menu-title-b"),
+                        dcc.Slider(
+                            5000,
+                            10000,
+                            500,
+                            value=5000,
+                            id="repetitions-filter",
+                            marks=None,
+                            tooltip={"placement": "bottom", "always_visible": True},
+                        ),
+                    ]
+                ),
+            ],
+            className="menu-b",
         ),
         html.Div(
             children=[
