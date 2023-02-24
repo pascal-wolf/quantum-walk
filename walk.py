@@ -16,7 +16,7 @@ def perform_quantum_walk(
     qubits = cirq.GridQubit.rect(1, number_qubits)
     circuit = cirq.Circuit()
 
-    # circuit.append(cirq.X(qubits[1]))
+    circuit.append(cirq.X(qubits[4]))
     if coin_set:
         circuit.append(cirq.X(qubits[-1]))
     if symmetric:
