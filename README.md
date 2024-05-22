@@ -1,7 +1,7 @@
 
 # Quantum Walk Simulation
 
-This project was created in order visualise the discret Quantum Walk based on different input parameters. In addition a simulation of the Random Walk got created.
+This project aims to visualize the discrete Quantum Walk using various input parameters. Additionally, it includes a simulation of the Random Walk. The purpose of this project is to provide a visual representation of these concepts and explore their behavior.
 
 
 ## Deployment
