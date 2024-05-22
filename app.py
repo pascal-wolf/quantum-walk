@@ -41,14 +41,14 @@ def update_charts(n_qubits, n_steps, repetitions, walk_type, coin):
         walk_type = ""
         print("No walk type selected. Setting arrays to zero!")
 
-    price_chart_figure = create_price_chart_figure(x_array, y_array, walk_type)
+    price_chart_figure = create_chart_figure(x_array, y_array, walk_type)
 
     return price_chart_figure
 
 
-def create_price_chart_figure(x_array, y_array, walk_type):
+def create_chart_figure(x_array, y_array, walk_type):
     """
-    Create the figure for the price chart.
+    Create the chart figure.
     """
     return {
         "data": [
