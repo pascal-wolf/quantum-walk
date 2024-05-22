@@ -5,12 +5,13 @@ This project aims to visualize the discrete Quantum Walk using various input par
 
 ![alt text](/images/demo_image.png)
 
-Make sure to also check out our demo video inside the videos folder.
+Make sure to also check out our [demo video](/videos/demo_video.mp4) inside the videos folder.
 
-## Deployment
+## Usage
 
 To deploy the project, make sure you have Python version 3.10 or above installed. 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install all requirements.
+We recommend using a virtual environment before installing the requirements.
 
 ```bash
 pip install -r requirements.txt
