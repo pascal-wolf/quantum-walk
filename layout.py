@@ -97,6 +97,15 @@ def create_wrapper():
 def create_dropdown(title, options, default, id):
     """
     Create a dropdown menu with the given parameters.
+
+    Args:
+        title (str): The title of the dropdown menu.
+        options (list): The options for the dropdown menu.
+        default (str): The default value of the dropdown menu.
+        id (str): The id of the dropdown menu.
+
+    Returns:
+        dash_html_components.Div: A Div component containing the dropdown menu.
     """
     return html.Div(
         children=[
@@ -116,6 +125,17 @@ def create_dropdown(title, options, default, id):
 def create_slider(title, min, max, step, default, id):
     """
     Create a slider with the given parameters.
+
+    Args:
+        title (str): The title of the slider.
+        min (int): The minimum value of the slider.
+        max (int): The maximum value of the slider.
+        step (int): The step value of the slider.
+        default (int): The default value of the slider.
+        id (str): The id of the slider.
+
+    Returns:
+        dash_html_components.Div: A Div component containing the slider.
     """
     return html.Div(
         children=[
